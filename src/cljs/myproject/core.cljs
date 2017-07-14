@@ -262,6 +262,8 @@
       [:div {:class chosen-bank-logo}
         (txt-link-component "/hej" "Change " (print-this "someone tried to change bank"))]]))
 
+;;This is a comment that is added! git hub desktop please see this!?!?
+
 (defn header-component
   [header-txt back-bt-url]
   [:div {:class "header"}
