@@ -13,14 +13,28 @@
 
 ;;A TIMER COMPONENT COULD BE USED ON THE COUNTDOWN page
 ;;SE HERE http://reagent-project.github.io/
+(defn print-this
+  [txt-to-print]
+  (println txt-to-print))
 
-; (defn timer-component []
-;   (let [seconds-elapsed (r/atom 0)]
-;     (fn []
-;       (js/setTimeout #(swap! seconds-elapsed inc) 1000)
-;       [:div
-;        "Seconds Elapsed: " @seconds-elapsed])))
+(defn redirect! [loc]
+  (set! (.-location js/window) loc))
 
+(defn timer-component []
+  (let [seconds-elapsed (r/atom 0)]
+    (fn []
+      (js/setTimeout #(swap! seconds-elapsed inc) 1000)
+      (if (= @seconds-elapsed 10)
+        (redirect! "/about")
+        [:div]))))
+
+
+(defn countdown-component []
+ (let [seconds-elapsed (r/atom 60)]
+   (fn []
+     (js/setTimeout #(swap! seconds-elapsed dec) 1000)
+     [:div
+      "Seconds Elapsed: " @seconds-elapsed])))
 
 (defn input-element
   "An input element which updates its value on change"
@@ -175,9 +189,6 @@
   []
   (println "Button clicked yeeeeey!"))
 
-(defn print-this
-  [txt-to-print]
-  (println txt-to-print))
 
 
 (defn button-component
@@ -189,12 +200,14 @@
     [:div {:class "anim"}]])
 
 (defn txt-link-component
-  [href link-txt func]
+  [href link-txt func arrow?]
   [:a {:href href
        :class "txt-link"
        :on-click func}
     link-txt
-    [:div {:class "txt-link-icon"}]])
+    (if arrow?
+      [:div {:class "txt-link-icon"}]
+      [:div])])
 
 
 (defn input-template
@@ -260,7 +273,7 @@
   (let [chosen-bank-logo (str chosen-bank-class "-logo")]
     [:div {:class "chosen-bank-box"}
       [:div {:class chosen-bank-logo}
-        (txt-link-component "/hej" "Change " (print-this "someone tried to change bank"))]]))
+        (txt-link-component "/hej" "Change " (print-this "someone tried to change bank") false)]]))
 
 ;;This is a comment that is added! git hub desktop please see this!?!?
 
@@ -270,6 +283,22 @@
     (button-component back-bt-url "" "back-bt" printFunc)
     [:span {:class "header-txt"} header-txt]])
 
+(defn start-page-components
+  []
+  [:div {:class "start-page"}
+    [:div {:class "zimpler-logo-l"}]
+    [:span {:class "just-payments"} "No apps. No registration. Just payments."]
+    [:div {:class "circle-loader"}
+      [:div]
+      [:div]
+      [:div]
+      [:div]
+      [:div]]
+    [:div {:class "sm-txt"} "Zimpler is under the supervision of the Swedish FSA.
+    Organisation number: 556887-9984"]
+    [:div {:class "card-logos-banner"}
+      [:div {:class "card-icon"}]]
+    [:div [:a {:href "/sign-in"} "continue to sign in page"]]])
 
 
 ;
@@ -296,6 +325,9 @@
 ;   [:div {:class "input-group"}
 ;     [name-input input-atom-value]])
 
+
+
+;This is the page showing the personal information
 (defn home-page [] ;;home-page is just a function that returns  DOM elements
   (let [user-name-atom (atom "John Doe")
         st-address-atom (atom "Stampgatan 3D")
@@ -363,6 +395,12 @@
         [:div [:h2 "About myproject"]
          [:div [:a {:href "/"} "go to the home page"]]]]]])
 
+(defn start-page []
+ [:div {:class "mobile-container"}
+   [:div {:class "mobile-display"}
+     [:div {:class "content brandcolor-animation-bg"}
+       (start-page-components)]]])
+
 (defn sign-in-page []
   (let [sms-code-atom (atom nil)
         show-sms-code-input-atom (atom false)]
@@ -372,13 +410,13 @@
          [:div {:class "content"}
            (header-component "withdraw 500 SEK" "/")
            [:h1 "Hi,"]
-           [:h2 "Confirm your phone number to proceed"]
+           [:h2 "Verify your phone number to continue"]
            [:form
              [:div {:class "input-group"}
                [phone-nmbr-input user-phone-nmbr-test-atom]
                [:span {:class "bar"}]
                [:label "Phone number"]
-               (button-component "/verify-sms" "Send SMS code to verify" "default-bt" printFunc)]]]]])))
+               (button-component "/verify-sms" "send sms to verify" "default-bt" printFunc)]]]]])))
 
 
 
@@ -390,8 +428,7 @@
        [:div {:class "mobile-display"}
          [:div {:class "content"}
            (header-component "withdraw 500 SEK" "/sign-in")
-           [:h1 "Hi,"]
-           [:h2 "Confirm your phone number to proceed"]
+           [:h2 "Enter the SMS code to verify your phone"]
            [:form
              [:div {:class "input-group"}
                [phone-nmbr-input user-phone-nmbr-test-atom]
@@ -423,7 +460,7 @@
             (button-component "/account-details" "Danskebank" "default-bt bank-bt danskebank-logo" printFunc)
             (button-component "/account-details" "Ica-banken" "default-bt bank-bt icabanken-logo" printFunc)
             (button-component "/account-details" "Skandiabanken" "default-bt bank-bt skandiabanken-logo" printFunc)
-            (txt-link-component "/account-details" "My bank is not shown above " printFunc)
+            (txt-link-component "/account-details" "My bank is not shown above " printFunc true)
             [:div {:class "clear-box"}]]]]])))
 
 (defn account-details-page []
@@ -447,24 +484,53 @@
                [account-nmbr-input account-nmbr]
                [:span {:class "bar"}]
                [:label "Account number"]
-               (button-component "/choose-bank" "Continue" "default-bt" printFunc)]]]]])))
+               (button-component "/check-account-details" "Continue" "default-bt" printFunc)]]]]])))
 
+(defn check-account-details-page []
+  [:div {:class "mobile-container"}
+    [:div {:class "mobile-display"}
+      [:div {:class "content brandcolor-animation-bg"}
+        [:div [:h2 "Checking your account details..."]]
+        [:div {:class "circle-loader"}
+          [:div]
+          [:div]
+          [:div]
+          [:div]
+          [:div]]
+        [:div [:a {:href "/final-page"} "continue"]]]]])
+
+(defn final-page []
+ [:div {:class "mobile-container"}
+   [:div {:class "mobile-display"}
+     [:div {:class "content brandcolor-animation-bg"}
+       [:div [:h2 "Waiting for approval from Casumo. You'll be redirected to Casumo site and have a reply by SMS within maximum:"]
+        [:div {:class "spinner"}]
+        [:h2 "56 SEK"]
+        [timer-component]
+        [countdown-component]
+        [:div [:h2 ""]]
+        [:div [:a {:href "/start"} "start"]]]]]])
 
 
 
 ;; -------------------------
 ;; Routes
 
-(def page (atom #'home-page))
+
+
+(def page (atom #'start-page))
 
 (defn current-page []
   [:div [@page]])
 
 (secretary/defroute "/" []
-  (reset! page #'home-page))
+  (reset! page #'start-page))
 
 (secretary/defroute "/about" []
   (reset! page #'about-page))
+
+(secretary/defroute "/start" []
+  (reset! page #'start-page))
 
 (secretary/defroute "/sign-in" []
   (reset! page #'sign-in-page))
@@ -477,6 +543,12 @@
 
 (secretary/defroute "/account-details" []
   (reset! page #'account-details-page))
+
+(secretary/defroute "/check-account-details" []
+  (reset! page #'check-account-details-page))
+
+(secretary/defroute "/final-page" []
+  (reset! page #'final-page))
 
 (secretary/defroute "/test" []
   (reset! page #'test-page))
