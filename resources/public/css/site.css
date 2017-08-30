@@ -1,0 +1,616 @@
+body {
+  margin: 0;
+  font-family: 'Source Sans Pro', sans-serif; /*zimpler-font*/
+  font-weight: lighter;
+  color: #4F5E7F;
+  background-color: #FEFEFE;
+}
+h1 {
+  margin: 50px 10px 10px 10px;
+  font-weight: normal;
+  font-size: 26px;
+}
+h2 {
+  padding: 15px 0 15px 0;
+  margin: 0 0 0 10px;
+  position: relative;
+  font-weight: normal;
+  font-size: 20px;
+}
+.sm-txt {
+  font-size: 12px;
+  text-align: center;
+}
+a {
+  color: #63BBFF; /*Aqua dark*/
+  font-weight: normal;
+  text-decoration: none;
+  padding-top: 25px;
+  float: left;
+  font-size: 18px;
+}
+.clear-box {
+  clear: both;
+}
+.default-bt {
+  position: relative;
+  overflow: hidden;
+  margin-top: 45px !important;
+  width: 100%;
+  height: 45px;
+  background-color: #00DDD4;
+  display: block;
+  text-align: center;
+  line-height: 45px;
+  color: white;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 400;
+  margin: auto;
+  border-radius: 3px;
+  box-shadow: rgba(14,145,139,0.75);
+  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 0.2s;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  padding: 0px;
+}
+/*.default-bt:hover {}
+  background-color: #00c4bc;
+*/
+.default-bt:active {
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+  transition-delay: 0s;
+}
+/*for hover animation scss see https://codepen.io/jonbrennecke/pen/xbojLg*/
+.anim {
+  -moz-transform: translateY(-50%) translateX(-50%);
+  -ms-transform: translateY(-50%) translateX(-50%);
+  -webkit-transform: translateY(-50%) translateX(-50%);
+  transform: translateY(-50%) translateX(-50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /*z-index: -1;*/
+}
+.anim:before {
+  position: relative;
+  content: '';
+  display: block;
+  margin-top: 100%;
+}
+.anim:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 50%;
+}
+.default-bt:hover > .anim {
+  -moz-animation: anim-out 0.75s;
+  -webkit-animation: anim-out 0.75s;
+  animation: anim-out 0.75s;
+}
+.default-bt:hover > .anim:after {
+  -moz-animation: anim-out-pseudo 0.75s;
+  -webkit-animation: anim-out-pseudo 0.75s;
+  animation: anim-out-pseudo 0.75s;
+}
+
+@-webkit-keyframes anim-in {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@-moz-keyframes anim-in {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@-ms-keyframes anim-in {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@keyframes anim-in {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@-webkit-keyframes anim-in-pseudo {
+  0% {
+    background: rgba(0, 0, 0, 0.25);
+  }
+  100% {
+    background: transparent;
+  }
+}
+@-moz-keyframes anim-in-pseudo {
+  0% {
+    background: rgba(0, 0, 0, 0.25);
+  }
+  100% {
+    background: transparent;
+  }
+}
+@-ms-keyframes anim-in-pseudo {
+  0% {
+    background: rgba(0, 0, 0, 0.25);
+  }
+  100% {
+    background: transparent;
+  }
+}
+@keyframes anim-in-pseudo {
+  0% {
+    background: rgba(0, 0, 0, 0.25);
+  }
+  100% {
+    background: transparent;
+  }
+}
+@-webkit-keyframes anim-out {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@-moz-keyframes anim-out {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@-ms-keyframes anim-out {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@keyframes anim-out {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@-webkit-keyframes anim-out-pseudo {
+  0% {
+    background: rgba(0, 0, 0, 0.25);
+  }
+  100% {
+    background: transparent;
+  }
+}
+@-moz-keyframes anim-out-pseudo {
+  0% {
+    background: rgba(0, 0, 0, 0.25);
+  }
+  100% {
+    background: transparent;
+  }
+}
+@-ms-keyframes anim-out-pseudo {
+  0% {
+    background: rgba(0, 0, 0, 0.25);
+  }
+  100% {
+    background: transparent;
+  }
+}
+@keyframes anim-out-pseudo {
+  0% {
+    background: rgba(0, 0, 0, 0.25);
+  }
+  100% {
+    background: transparent;
+  }
+}
+
+
+
+.header {
+  position: relative;
+  background: #00DDD4 url("/images/zimpler-logo-white.png") no-repeat center;
+  background-size: 65px;
+  width: 100%;
+  height: 45px;
+  margin-bottom: 20px;
+}
+.header .header-txt {
+  position: relative;
+  display: block;
+  text-align: center;
+  top: 28px;
+  color: white;
+  font-size: 13px;
+}
+.header .back-bt {
+  position: absolute;
+  float: left;
+  background: transparent url("/images/back-left-icon.svg") no-repeat center;
+  background-size: 10px;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: white 1px solid;
+  border-radius: 50%;
+  margin: 5px 0px 0px 5px;
+
+/*makes the button stnd out*/
+  box-shadow: rgba(14,145,139,0.75);
+  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 0.2s;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+.zimpler-logo-l {
+  background: transparent url("/images/zimpler-logo-white.png") no-repeat center;
+  width: 100%;
+  height: 50px;
+}
+.txt-link-icon {
+  background: transparent url("/images/back-right-icon-blue.svg") no-repeat right;
+  background-size: 8px;
+  width: 13px;;
+  height: 25px;
+  float: right;
+}
+
+.old-form-box {
+  position: relative;
+  margin-top: 300px;
+}
+/*Box that includes the phone*/
+.mobile-container {
+  position: relative;
+  width: 500px;
+  height: 700px;
+  padding: 0;
+  margin: auto;
+  background: url("iphone-template-white.png") no-repeat 90px 10px;
+  background-size: contain
+}
+/*A box that fits into the mobile screen*/
+.mobile-display {
+  position: relative;
+  max-width: 292px;
+  height: 512px;
+  margin-left: 120px;
+  top: 98px;
+}
+.content {
+  /*position: relative;
+  margin-top: 100px;*/
+}
+
+/*.content.start-page{
+  height: 100%;
+  background: linear-gradient(-70deg, #00a599, #00DDD4);
+}*/
+
+.content.brandcolor-animation-bg{
+  height: 100%;
+  background-color: #00a599;
+  background: linear-gradient(-45deg, #00a599, #00DDD4, #fff);
+	background-size: 400% 400%;
+	-webkit-animation: Gradient 10s ease infinite;
+	-moz-animation: Gradient 10s ease infinite;
+	animation: Gradient 10s ease infinite;
+}
+@-webkit-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@-moz-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+/*animationstest stop här*/
+
+.spinner {
+  margin: auto;
+  height: 120px;
+  width: 120px;
+  animation: rotate 1.2s infinite linear;
+  border: 8px solid #fff;
+  border-right-color: transparent;
+  border-radius: 50%;
+}
+.circle-loader div {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  left: -20px;
+  top: 40px;
+  background-color: rgba(255, 255, 255, 0.4);;
+  border-radius: 50%;
+  animation: move 2.5s infinite cubic-bezier(.2,.64,.81,.23);
+}
+.circle-loader div:nth-child(2) {
+  animation-delay: 300ms;
+}
+.circle-loader div:nth-child(3) {
+  animation-delay: 600ms;
+}
+.circle-loader div:nth-child(4) {
+  animation-delay: 900ms;
+}
+@keyframes move {
+  0% {left: 0%;}
+  75% {left:100%;}
+  100% {left:100%;}
+}
+
+@keyframes rotate {
+  0%    { transform: rotate(0deg); }
+  100%  { transform: rotate(360deg); }
+}
+
+.start-page {
+  position: relative;
+  top: 100px;
+}
+.start-page .zimpler-logo-l{
+  display: block;
+
+}
+.start-page .circle-loader div {
+  margin-top: 80px;
+}
+.start-page .just-payments {
+  text-align: center;
+  display: block;
+  color: white;
+}
+.start-page a {
+  padding-top: 200px;
+}
+.start-page .card-logos-banner {
+  margin-top: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 60px;
+  width: 60%;
+  /*background-color: blue;*/
+  /*background: transparent url("/images/visa.svg") no-repeat left, transparent url("/images/visa.svg") no-repeat left;
+  background-size: 50px, 50px;*/
+  background-image: url("/images/visa.svg"), url("/images/VbyV.svg"), url("/images/mastercard.svg");
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-size: 50px;
+  background-position: left, center, right;
+}
+.start-page .sm-txt {
+  margin-top: 150px;
+}
+
+form {
+  /*.margin-top: 40px!important;*/
+  padding: 30px 10px 10px 10px;
+}
+
+.input-group {
+  position: relative;
+  display: block;
+  margin: auto;
+  margin-bottom: 30px;
+}
+.input-group.small {
+  z-index: 9999;
+  margin: 0;
+  margin-bottom: 30px;
+  width: 45%;
+  float: left;
+}
+.input-group.small.margin-right {
+  margin-right: 25px;
+}
+input {
+  z-index: 9999;
+  font-size: 18px;
+  font-family: inherit;
+  font-weight: lighter;
+  padding: 0px 0px 3px 0px; /*3px = difference between underline*/
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #63D5FF;
+}
+
+input:focus {
+  outline: none;
+}
+/* active state */
+/*Why isn't this working? it looks like the input field is
+ set to valid from the start and never get non-valid
+ answer: you need to set input to required=""*/
+input:focus ~ label, input:valid ~ label {
+  top: -20px;
+  font-size: 14px;
+  color: #00DDD4;
+}
+.bar {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+.bar:before, .bar:after {
+  content: '';
+  height: 1px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #00DDD4;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+.bar:before {
+  left: 50%;
+}
+.bar:after {
+  right: 50%;
+}
+
+/* Active state */
+input:focus ~ .bar:before, input:focus ~ .bar:after {
+  width: 50%;
+}
+label {
+  color: #4F5E7F;
+  font-size: 18px;
+  font-family: inherit;
+  font-weight: lighter;
+  position: absolute;
+  pointer-events: none;
+  top: 3px; /*difference between underline*/
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2 ease all;
+}
+
+/*.start-page-visuals {
+  background-color: blue;
+  width: 100%;
+  height: 100%;
+}*/
+
+.bank-options {
+  padding: 10px 10px 10px 10px;
+}
+.bank-bt {
+  width: 48%;
+  float: left;
+  margin: 10px 1% 0px 1% !important;
+  background-color: #F3F7FA;
+  color: #434A54;
+  font-size: 8px;
+  text-align: center;
+  line-height: 15px;
+}
+.chosen-bank-box {
+  width: 100%;
+  height: auto;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #63D5FF;
+  /*border: blue solid 2px;*/
+}
+.chosen-bank-box .swedbank-logo {
+  background-position: left;
+  background-color: transparent;
+  min-height: 30px;
+}
+.chosen-bank-box a {
+  margin: 0 0 0 0px;
+  float: right;
+  padding: 10px 0 0 0;
+  font-size: 12px;
+}
+.swedbank-logo {
+  background: #F3F7FA url("/images/bank-logos/swedbank.png") no-repeat center;
+  background-size: 100px;
+  display: block;
+}
+.nordea-logo {
+  background: #F3F7FA url("/images/bank-logos/nordea.png") no-repeat center;
+  background-size: 80px;
+}
+.handelsbanken-logo {
+  background: #F3F7FA url("/images/bank-logos/handelsbanken.png") no-repeat center;
+  background-size: 100px;
+}
+.seb-logo {
+  background: #F3F7FA url("/images/bank-logos/seb.png") no-repeat center;
+  background-size: 70px;
+}
+.lansforsakringar-logo {
+  background: #F3F7FA url("/images/bank-logos/lansforsakringar.png") no-repeat center;
+  background-size: 120px;
+}
+.danskebank-logo {
+  background: #F3F7FA url("/images/bank-logos/danskebank.png") no-repeat center;
+  background-size: 90px;
+}
+.icabanken-logo {
+  background: #F3F7FA url("/images/bank-logos/ica-banken.png") no-repeat center;
+  background-size: 90px;
+}
+.skandiabanken-logo {
+  background: #F3F7FA url("/images/bank-logos/skandia-banken.png") no-repeat center;
+  background-size: 120px;
+}
+
+/*
+
+/* ZIMPLER STYLES
+AQUA #63D5FF
+Aqua Dark #63BBFF good for links?
+MINT/BRANDING #00DDD4
+SUNFLOWE
+YELLOW #FDC66A
+BITTERSWEET RED #FF7070
+DUSK/DARK BLUE #4F5E7F
+
+Gray Dark #656D78
+Gray Darker #434A54
+
+Gray Middle #AAB2BD
+Gray #CCD1D9
+Gray Light #E6E9ED
+Gray Lighter #F3F7FA
+White #FEFEFE
+
+
+
+
+ */
