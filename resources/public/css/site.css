@@ -1,6 +1,18 @@
+@font-face {
+  font-family: lisas-main-font; /*source sans pro, downloaded*/
+  src: url(/fonts/source_sans_pro/SourceSansPro-Light.ttf);
+  font-weight: normal;
+}
+@font-face {
+  font-family: lisas-main-font; /*source sans pro, downloaded*/
+  src: url(/fonts/source_sans_pro/SourceSansPro-Bold.ttf);
+  font-weight: bold;
+}
+
 body {
   margin: 0;
-  font-family: 'Source Sans Pro', sans-serif; /*zimpler-font*/
+  /*font-family: 'Source Sans Pro', sans-serif;*/ /*zimpler-font*/
+  font-family: lisas-main-font;
   font-weight: lighter;
   color: #4F5E7F;
   background-color: #FEFEFE;
