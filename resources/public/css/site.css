@@ -8,6 +8,11 @@
   src: url(/fonts/source_sans_pro/SourceSansPro-Bold.ttf);
   font-weight: bold;
 }
+@font-face {
+  font-family: lisas-main-font; /*source sans pro, downloaded*/
+  src: url(/fonts/source_sans_pro/SourceSansPro-ExtraLight.ttf);
+  font-weight: lighter;
+}
 
 body {
   margin: 0;
